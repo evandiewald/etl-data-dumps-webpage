@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>DeWi ETL Data Dumps</title>
+</head>
+<body>
+    <h1>DeWi ETL Data Dumps</h1>
+    <ul>
+    {% for folder in folders %}
+    {% set link = "/" + folder %}
+    <li><a href="{{ link }}">{{ folder }}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

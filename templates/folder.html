@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>DeWi ETL Data Dumps</title>
+</head>
+<body>
+    <h1>DeWi ETL Data Dumps</h1>
+    <h2><a href="{{ url_for('homepage') }}">home</a> / {{ folder + "/" }}</h2>
+    <ul>
+    {% for file in files %}
+    {% set link = url_prefix + file["Key"] %}
+    <li><a href="{{ link }}">{{ file["Key"].split("/")[-1] }}</a> [{{ (file["Size"] / 1e6)|round(2) }} MB]</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
