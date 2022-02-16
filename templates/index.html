@@ -4,9 +4,10 @@
 </head>
 <body>
     <h1>DeWi ETL Data Dumps</h1>
+    <h2><a href="{{ url_for('homepage') }}">home</a> /</h2>
     <ul>
     {% for folder in folders %}
-    {% set link = "/" + folder %}
+    {% set link = "/folder/" + folder %}
     <li><a href="{{ link }}">{{ folder }}</a></li>
     {% endfor %}
     </ul>
