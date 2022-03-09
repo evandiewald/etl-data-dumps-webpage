@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import JSONResponse
 import boto3
 from cachetools import cached, TTLCache
 
@@ -35,4 +36,10 @@ async def files_in_folder(request: Request, folder: str):
     return templates.TemplateResponse("folder.html", {"request": request, "folder": folder, "url_prefix": URL_PREFIX, "files": files})
 
 
-
+@app.get("/inventories/latest")
+async def latest_inventories(request: Request):
+    folders, folders_cache = get_objects()
+    response = {}
+    for folder in folders_cache.keys():
+        response[folder] = URL_PREFIX + folders_cache[folder][-1]["Key"]
+    return JSONResponse(response)
